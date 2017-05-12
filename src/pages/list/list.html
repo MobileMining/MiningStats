@@ -3,12 +3,62 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Prices</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-card>
+    <ion-card-header>
+      <h1>Last 10 payments</h1>
+      <ion-row>
+        <ion-col>
+          #
+        </ion-col>
+        <ion-col>
+          Paid on
+        </ion-col>
+        <ion-col>
+          Duration
+        </ion-col>
+        <ion-col>
+          ZEC
+        </ion-col>
+        <ion-col>
+          USD
+        </ion-col>
+      </ion-row>
+
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row *ngFor="let payment of payouts; let i = index;">
+        <ion-col>{{i+1}}</ion-col>
+        <ion-col>
+          {{payment.date}}
+        </ion-col>
+        <ion-col>
+          {{payment.duration}}
+        </ion-col>
+        <ion-col ion-button small color="light">
+          {{payment.amount}}
+        </ion-col>
+        <ion-col ion-button small color="secondary">
+          {{payment.usd}}
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      Zcash Price Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+  <!--<ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-icon [name]="item.icon" item-left></ion-icon>
       {{item.title}}
@@ -19,5 +69,5 @@
   </ion-list>
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+  </div>-->
 </ion-content>
